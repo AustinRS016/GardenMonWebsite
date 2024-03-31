@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/github.io/GardenMonWebsite/static/css/main.5a984d1b.css",
-    "main.js": "/github.io/GardenMonWebsite/static/js/main.1c9bad15.js",
-    "index.html": "/github.io/GardenMonWebsite/index.html",
-    "main.5a984d1b.css.map": "/github.io/GardenMonWebsite/static/css/main.5a984d1b.css.map",
-    "main.1c9bad15.js.map": "/github.io/GardenMonWebsite/static/js/main.1c9bad15.js.map"
+    "main.css": "/GardenMonWebsite/static/css/main.5a984d1b.css",
+    "main.js": "/GardenMonWebsite/static/js/main.1c9bad15.js",
+    "index.html": "/GardenMonWebsite/index.html",
+    "main.5a984d1b.css.map": "/GardenMonWebsite/static/css/main.5a984d1b.css.map",
+    "main.1c9bad15.js.map": "/GardenMonWebsite/static/js/main.1c9bad15.js.map"
   },
   "entrypoints": [
     "static/css/main.5a984d1b.css",
