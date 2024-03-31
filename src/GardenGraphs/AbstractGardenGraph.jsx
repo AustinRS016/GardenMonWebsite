@@ -33,31 +33,25 @@ const GardenGraph = ({ timeSeries, params }) => {
 
 		setStatistics(result);
 
-		let avg = result.sum / timeSeries.length;
-		console.log('-- ', title, ' --');
-		console.log(`Min: ${result.min}, Max: ${result.max}, Avg: ${avg}`);
-		console.log(`Min Date: ${result.minDate}, Max Date: ${result.maxDate}`);
-
 		// Check if data is available
 		if (!timeSeries) return;
 
 		// Set margins and dimensions
-		const svgContainer = d3.select('#svg-container'); // replace with the id of your container
-
 		const margin = { top: 5, right: 30, bottom: 25, left: 30 },
 			width = 440 - margin.left - margin.right,
 			height = 300 - margin.bottom - margin.top;
 
+		// Remove existing graph in case of redrawing
+		d3.select(`#${yKey}-graph`)?.selectAll('*')?.remove();
+
 		// Create SVG element
 		const svg = d3
 			.select(`#${yKey}-graph`)
+			// this makes the graph responsive
 			.attr('viewBox', `0 0 400 300`)
 			.attr('width', '100%')
 			.append('g')
 			.attr('transform', `translate(${margin.left},${margin.top})`);
-
-		// Remove existing elements before rendering
-		svg.selectAll('*').remove();
 
 		// Create x scale
 		const x = d3

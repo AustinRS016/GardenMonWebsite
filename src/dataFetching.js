@@ -9,15 +9,18 @@ export const getWeatherData = async () => {
 
 /**
  * Gets data from gardenMon API
- * @param {string} startDate Beginning of the date range, as "YYYY-MM-DD-HH"
- * @param {string} endDate End of the date range, as "YYYY-MM-DD-HH"
+ * @param {string} startDate Beginning of the date range, as "YYYY-MM-DD-HH-mm"
+ * @param {string} endDate End of the date range, as "YYYY-MM-DD-HH-mm"
  * @param {TimeGroup} grouping Period of time to group data by
  * @returns {Promise<{data: GardenMonResponse[]}>}
  */
-export const getGardenMonData = async (startDate, endDate, grouping) => {
-    const res = await axios.get(`http://192.168.10.79:5000/data?start_date=${startDate}&end_date=${endDate}&grouping_period=${grouping}`)
-    console.log(res)
-    return res
+export const getGardenMonData = async (startDate, endDate, grouping, device) => {
+    try {
+        const res = await axios.get(`http://192.168.10.79:5000/data?start_date=${startDate}&end_date=${endDate}&grouping_period=${grouping}&device=${device}`)
+        return res?.data ?? []
+    } catch (error) {
+        return { data: [] }
+    }
 }
 
 /**

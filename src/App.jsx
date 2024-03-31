@@ -5,6 +5,65 @@ import React, { useEffect, useState } from 'react';
 import timeSeries from './testData.json';
 import AbstractGardenGraph from './GardenGraphs/AbstractGardenGraph';
 
+function App() {
+	const [gardenData, setGardenData] = useState(
+		/** @type {GardenMonResponse[] | []} */ ([])
+	);
+	const [device, setDevice] = useState(/** @type {Device} */ ('gardenmon'));
+
+	useEffect(() => {
+		const startDate = '2024-03-01-00-00';
+		const endDate = createNowDate();
+		const grouping = 'hour';
+		getGardenMonData(startDate, endDate, grouping, device).then((data) =>
+			setGardenData(data)
+		);
+	}, [device]);
+
+	return (
+		<>
+			<div className='App'>
+				<button
+					onClick={() => setDevice('gardenmon')}
+					className={`button-tab ${device === 'gardenmon' ? 'active' : null}`}
+				>
+					Gardenmon
+				</button>
+				<button
+					onClick={() => setDevice('gardenmon_two')}
+					className={`button-tab ${
+						device === 'gardenmon_two' ? 'active' : null
+					}`}
+				>
+					Gardenmon2
+				</button>
+				{gardenData.length > 0 &&
+					graphParameters.map((entry) => (
+						<div className='card-container' key={entry.yKey}>
+							<AbstractGardenGraph
+								key={entry.yKey}
+								timeSeries={gardenData}
+								params={entry}
+							/>
+						</div>
+					))}
+			</div>
+		</>
+	);
+}
+
+const createNowDate = () => {
+	const now = new Date();
+	const year = now.getFullYear();
+	const month = now.getMonth() + 1;
+	const day = now.getDate();
+	const hour = now.getHours();
+	const minute = now.getMinutes();
+	return `${year}-${month}-${day}-${hour}-${minute}`;
+};
+
+export default App;
+
 const xKey = 'insert_time';
 
 /**
@@ -24,7 +83,7 @@ const soilTempParams = {
 	yLabel: 'Temperature (F)',
 	xLabel: 'Time',
 	title: 'Soil Temperature',
-	yKey: 'avg_soil_temp_f',
+	yKey: 'soil_temp_f',
 	xKey: xKey,
 };
 
@@ -36,7 +95,7 @@ const soilMoistureLevelParams = {
 	yLabel: 'Moisture Level',
 	xLabel: 'Time',
 	title: 'Soil Moisture',
-	yKey: 'avg_soil_moisture_level',
+	yKey: 'soil_moisture_level',
 	xKey: xKey,
 };
 
@@ -48,7 +107,7 @@ const soilMoistureValParams = {
 	yLabel: 'Moisture Value',
 	xLabel: 'Time',
 	title: 'Soil Moisture Value',
-	yKey: 'avg_soil_moisture_val',
+	yKey: 'soil_moisture_val',
 	xKey: xKey,
 };
 
@@ -60,7 +119,7 @@ const humidityParams = {
 	yLabel: 'Humidity (%)',
 	xLabel: 'Time',
 	title: 'Humidity',
-	yKey: 'avg_ambient_humidity',
+	yKey: 'ambient_humidity',
 	xKey: xKey,
 };
 
@@ -72,11 +131,9 @@ const lightParams = {
 	yLabel: 'Light (lux)',
 	xLabel: 'Time',
 	title: 'Light',
-	yKey: 'avg_ambient_light_lx',
+	yKey: 'ambient_light_lx',
 	xKey: xKey,
 };
-
-const test = 0;
 
 /**
  * @type {GraphParams}
@@ -86,7 +143,7 @@ const cpuTempParams = {
 	yLabel: 'Temperature (F)',
 	xLabel: 'Time',
 	title: 'CPU Temperature',
-	yKey: 'avg_cpu_temp_f',
+	yKey: 'cpu_temp_f',
 	xKey: xKey,
 };
 
@@ -98,7 +155,7 @@ const ambientTempParams = {
 	yLabel: 'Temperature (F)',
 	xLabel: 'Time',
 	title: 'Ambient Temperature',
-	yKey: 'avg_ambient_temp_f',
+	yKey: 'ambient_temp_f',
 	xKey: xKey,
 };
 /**
@@ -114,29 +171,6 @@ const graphParameters = [
 	ambientTempParams,
 ];
 
-function App() {
-	// const [weatherData, setWeatherData] = useState(undefined);
-	// useEffect(() => {
-	// 	const startDate = '2024-03-25-00';
-	// 	const endDate = '2024-03-26-00';
-	// 	const grouping = 'hour';
-	// 	getGardenMonData(startDate, endDate, grouping).then((res) =>
-	// 		setWeatherData(res.data)
-	// 	);
-	// }, []);
-	return (
-		<div className='App'>
-			{graphParameters.map((entry) => (
-				<div className='card-container'>
-					<AbstractGardenGraph
-						key={entry.yKey}
-						timeSeries={timeSeries}
-						params={entry}
-					/>
-				</div>
-			))}
-		</div>
-	);
-}
-
-export default App;
+/**
+ * @typedef {'gardenmon' | 'gardenmon_two'} Device
+ */
