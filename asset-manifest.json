@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AustinRS016/GardenMonWebsite/static/css/main.5a984d1b.css",
+    "main.js": "/AustinRS016/GardenMonWebsite/static/js/main.1c9bad15.js",
+    "index.html": "/AustinRS016/GardenMonWebsite/index.html",
+    "main.5a984d1b.css.map": "/AustinRS016/GardenMonWebsite/static/css/main.5a984d1b.css.map",
+    "main.1c9bad15.js.map": "/AustinRS016/GardenMonWebsite/static/js/main.1c9bad15.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a984d1b.css",
+    "static/js/main.1c9bad15.js"
+  ]
+}
