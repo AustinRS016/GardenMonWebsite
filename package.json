@@ -2,7 +2,7 @@
 	"name": "my-app",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://github.com/AustinRS016/GardenMonWebsite",
+	"homepage": "https://AustinRS016/github.io/GardenMonWebsite",
 	"env": {
 		"PUBLIC_URL": "http://<your-github-username>.github.io/<your-repo-name>"
 	},
