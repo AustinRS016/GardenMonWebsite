@@ -22,32 +22,19 @@ export const getGardenMonData = async (startDate, endDate, grouping, device) => 
         return { data: [] }
     }
 }
-
 /**
  * @typedef {'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly'} TimeGroup
  */
 
-const example = {
-    "avg_ambient_humidity": 77.9300001780192,
-    "avg_ambient_light_lx": 0.0,
-    "avg_ambient_temp_f": 49.07150020599365,
-    "avg_cpu_temp_f": 86.9211669921875,
-    "avg_soil_moisture_level": "10.0000",
-    "avg_soil_moisture_val": "1538.0333",
-    "avg_soil_temp_f": 53.95249996185303,
-    "device": "gardenmon",
-    "insert_time": "2024-03-25 00"
-}
-
 /**
  * @typedef {Object} GardenMonResponse
- * @property {number} avg_ambient_humidity - humidity
- * @property {number} avg_ambient_light_lx - light in lux
- * @property {number} avg_ambient_temp_f - temperature in Fahrenheit
- * @property {number} avg_cpu_temp_f - temperature in Fahrenheit
- * @property {string} avg_soil_moisture_level - soil moisture level
- * @property {string} avg_soil_moisture_val -  soil moisture value
- * @property {number} avg_soil_temp_f -  soil temperature in Fahrenheit
+ * @property {number} ambient_humidity - humidity
+ * @property {number} ambient_light_lx - light in lux
+ * @property {number} ambient_temp_f - temperature in Fahrenheit
+ * @property {number} cpu_temp_f - temperature in Fahrenheit
+ * @property {string} soil_moisture_level - soil moisture level
+ * @property {string} soil_moisture_val -  soil moisture value
+ * @property {number} soil_temp_f -  soil temperature in Fahrenheit
  * @property {string} device - Device name
  * @property {string} insert_time - Insertion time
  */
