@@ -4,7 +4,7 @@
 	"private": true,
 	"homepage": "https://AustinRS016.github.io/GardenMonWebsite",
 	"env": {
-		"PUBLIC_URL": "http://AustinRS016.github.io/GardenMonWebsite"
+		"PUBLIC_URL": "https://AustinRS016.github.io/GardenMonWebsite"
 	},
 	"dependencies": {
 		"@testing-library/jest-dom": "^5.17.0",
