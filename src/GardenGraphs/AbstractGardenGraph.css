@@ -1,0 +1,15 @@
+.graph-container {
+	max-width: 100%;
+	height: 100%;
+}
+
+.graph-container > svg {
+	width: 100%;
+	height: 100%;
+}
+
+.statistics {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}

@@ -1,9 +1,7 @@
 import './App.css';
 import { getGardenMonData, getWeatherData } from './dataFetching';
-import { LightBar } from './Lightbar';
 import React, { useEffect, useState } from 'react';
-import timeSeries from './testData.json';
-import AbstractGardenGraph from './GardenGraphs/AbstractGardenGraph';
+import GardenCard from './UiComponents/GardenCard';
 
 function App() {
 	const [gardenData, setGardenData] = useState(
@@ -23,36 +21,38 @@ function App() {
 	return (
 		<>
 			<div className='App'>
-				<button
-					onClick={() => setDevice('gardenmon')}
-					className={`button-tab ${device === 'gardenmon' ? 'active' : null}`}
-				>
-					Gardenmon
-				</button>
-				<button
-					onClick={() => setDevice('gardenmon_two')}
-					className={`button-tab ${
-						device === 'gardenmon_two' ? 'active' : null
-					}`}
-				>
-					Gardenmon2
-				</button>
-				{gardenData.length > 0 &&
-					graphParameters.map((entry) => (
-						<div className='card-container' key={entry.yKey}>
-							<AbstractGardenGraph
-								key={entry.yKey}
-								timeSeries={gardenData}
-								params={entry}
-							/>
-						</div>
+				<div className='header'>
+					<button
+						onClick={() => setDevice('gardenmon')}
+						className={`button-tab ${device === 'gardenmon' ? 'active' : null}`}
+					>
+						Gardenmon
+					</button>
+					<button
+						onClick={() => setDevice('gardenmon_two')}
+						className={`button-tab ${
+							device === 'gardenmon_two' ? 'active' : null
+						}`}
+					>
+						Gardenmon2
+					</button>
+				</div>
+				<div className='graphs-container'>
+					{graphParameters.map((entry) => (
+						<GardenCard
+							key={entry.yKey}
+							timeSeries={gardenData}
+							params={entry}
+							device={device}
+						/>
 					))}
+				</div>
 			</div>
 		</>
 	);
 }
 
-const createNowDate = () => {
+export const createNowDate = () => {
 	const now = new Date();
 	const year = now.getFullYear();
 	const month = now.getMonth() + 1;

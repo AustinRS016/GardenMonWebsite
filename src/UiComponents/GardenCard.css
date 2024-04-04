@@ -1,0 +1,77 @@
+.card-container {
+	border-radius: 15px;
+	background-color: #f8f9fa; /* Lighter background color */
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* More depth with two shadows */
+	width: 85%;
+	padding: 15px;
+	transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition for hover effect */
+	margin: 10px;
+	max-width: 500px;
+}
+
+.card-container:hover {
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); /* Larger shadow on hover */
+}
+
+.hidden > * {
+	visibility: hidden;
+}
+
+.menu-icon {
+	rotate: 180deg;
+	height: 2em;
+	width: 2em;
+	size: 15px;
+	float: right;
+}
+
+.back-icon {
+	height: 2em;
+	width: 2em;
+	size: 15px;
+	position: absolute;
+	left: 0;
+}
+
+.back-icon:hover,
+.menu-icon:hover {
+	color: #888; /* Change color on hover */
+	cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+.graph-parameters-menu {
+	position: absolute;
+	background-color: white;
+	z-index: 1;
+}
+
+.card-container {
+	position: relative; /* Add this line */
+}
+
+.graph-parameters-menu {
+	background-color: #f8f9fa; /* Lighter background color */
+	position: absolute; /* Add this line */
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 95%;
+	height: 95%;
+	margin: 2.5%;
+	z-index: 1; /* Add this line to ensure the menu is above other content */
+}
+
+.parameter-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid #ccc; /* Add border between rows */
+}
+
+.parameters-container {
+	display: flex;
+	flex-direction: column;
+	margin-top: 20px;
+}

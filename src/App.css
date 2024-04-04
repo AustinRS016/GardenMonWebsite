@@ -10,8 +10,14 @@
 	justify-content: center;
 	color: #666666;
 	display: flex;
+	flex-direction: column;
+}
+
+.graphs-container {
+	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 
 .button-tab {
@@ -22,10 +28,10 @@
 	text-decoration: none;
 	display: inline-block;
 	font-size: 16px;
-	margin: 4px 2px;
 	cursor: pointer;
 	border-radius: 8px;
 	padding: 10px 20px;
+	margin: 4px 2px;
 }
 
 .button-tab:hover {
@@ -46,85 +52,10 @@
 	padding: 10px 20px;
 }
 
-.light-bar {
-	max-width: 250px;
-	width: 80%;
-	height: 5px;
-	display: flex;
-	flex-direction: row;
-	position: relative;
-}
-
-.color-chunk {
+.header {
+	box-sizing: border-box;
+	background-color: #282c34;
+	color: white;
+	padding: 10px;
 	width: 100%;
-}
-
-.color-chunk-container {
-	width: 100%;
-	display: flex;
-	flex-direction: row;
-	filter: blur(1px);
-}
-
-.sun-bar {
-	height: 10px;
-	width: 2px;
-	background-color: black;
-	z-index: 5;
-	position: absolute;
-	top: 7px;
-}
-
-.current-time-indicator {
-	height: 5px;
-	width: 5px;
-	border-style: solid;
-	border-width: 3.5px;
-	border-color: #282c34;
-	border-radius: 5px;
-	position: absolute;
-	z-index: 4;
-	top: 50%;
-	transform: translateY(-50%);
-}
-
-.sun-bar-text-container {
-	position: absolute;
-}
-
-.sun-bar-text {
-	position: absolute;
-	font-size: 11px;
-	left: -8px;
-	top: 15px;
-}
-
-.card-container {
-	border-radius: 15px;
-	background-color: #f8f9fa; /* Lighter background color */
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* More depth with two shadows */
-	width: 85%;
-	padding: 15px;
-	transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition for hover effect */
-	margin: 10px;
-	max-width: 500px;
-}
-
-.card-container:hover {
-	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19); /* Larger shadow on hover */
-}
-.graph-container {
-	max-width: 100%;
-	height: 100%;
-}
-
-.graph-container > svg {
-	width: 100%;
-	height: 100%;
-}
-
-.statistics {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as d3 from 'd3';
+import './AbstractGardenGraph.css';
 
 /**
  * Abstract garden graph component
@@ -8,6 +9,7 @@ import * as d3 from 'd3';
  * @param {import('../App').GraphParams} props.params - Parameters for the graph
  */
 const GardenGraph = ({ timeSeries, params }) => {
+	console.log(timeSeries);
 	const { yKey, xKey, lineColor, yLabel, xLabel, title } = params;
 
 	const [statistics, setStatistics] = useState();
@@ -124,7 +126,7 @@ const GardenGraph = ({ timeSeries, params }) => {
 	}, [timeSeries, yKey, params]);
 
 	return (
-		<>
+		<div>
 			<div style={{ textAlign: 'center' }}>{title}</div>
 			<svg id={`${yKey}-graph`} />
 			{statistics && (
@@ -136,7 +138,7 @@ const GardenGraph = ({ timeSeries, params }) => {
 					<div>Max: {Number(statistics.max).toFixed(2)}</div>
 				</div>
 			)}
-		</>
+		</div>
 	);
 };
 

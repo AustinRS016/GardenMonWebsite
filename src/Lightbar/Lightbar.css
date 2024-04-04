@@ -1,0 +1,52 @@
+.sun-bar {
+	height: 10px;
+	width: 2px;
+	background-color: black;
+	z-index: 5;
+	position: absolute;
+	top: 7px;
+}
+
+.current-time-indicator {
+	height: 5px;
+	width: 5px;
+	border-style: solid;
+	border-width: 3.5px;
+	border-color: #282c34;
+	border-radius: 5px;
+	position: absolute;
+	z-index: 4;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.sun-bar-text-container {
+	position: absolute;
+}
+
+.sun-bar-text {
+	position: absolute;
+	font-size: 11px;
+	left: -8px;
+	top: 15px;
+}
+
+.light-bar {
+	max-width: 250px;
+	width: 80%;
+	height: 5px;
+	display: flex;
+	flex-direction: row;
+	position: relative;
+}
+
+.color-chunk {
+	width: 100%;
+}
+
+.color-chunk-container {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	filter: blur(1px);
+}
