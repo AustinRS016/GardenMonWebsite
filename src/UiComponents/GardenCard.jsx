@@ -16,13 +16,14 @@ const minDate = '2024-03-01-00-00';
  * @property {import('../dataFetching').GardenMonResponse} timeSeries
  * @property {import('../App').GraphParams} params
  * @property {import('../dataFetching').Device} device
+ * @property {import('../App').TimeOptions} timeGrouping
  */
 
 /**
  * @param {GardenCardProps} props
  * @returns {JSX.Element}
  */
-const GardenCard = ({ timeSeries, params, device }) => {
+const GardenCard = ({ timeSeries, params, device, timeGrouping }) => {
 	const [isHidden, setIsHidden] = useState(false);
 	const [customDate, setCustomDate] = useState({
 		startDate: null,
@@ -88,13 +89,14 @@ const GardenCard = ({ timeSeries, params, device }) => {
 					<AbstractGardenGraph
 						timeSeries={specificData.length ? specificData : timeSeries}
 						params={params}
+						timeGrouping={timeGrouping}
 					/>
 				</div>
 				{isHidden && (
 					<div className='graph-parameters-menu'>
-						<MdArrowBack className='back-icon' onClick={toggleHidden} />
+						{/* <MdArrowBack className='back-icon' onClick={toggleHidden} /> */}
 						<div className='parameters-container'>
-							<LocalizationProvider dateAdapter={AdapterDayjs}>
+							{/* <LocalizationProvider dateAdapter={AdapterDayjs}>
 								<div className='parameter-row'>
 									Start Date
 									<DateTimePicker
@@ -121,7 +123,7 @@ const GardenCard = ({ timeSeries, params, device }) => {
 										onChange={handleMaxDateChange}
 									/>
 								</div>
-							</LocalizationProvider>
+							</LocalizationProvider> */}
 							{/* <div className='parameter-row'>Color Picker</div> */}
 							<div className='button-tab active' onClick={handleReplot}>
 								Replot

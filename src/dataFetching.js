@@ -22,7 +22,9 @@ export const getGardenMonData = async (startDate, endDate, grouping, device, col
         const res = await axios.get(`http://192.168.10.79:5000/data?start_date=${startDate}&end_date=${endDate}&grouping_period=${grouping}&device=${device}${columnArg}`)
         return res?.data ?? []
     } catch (error) {
-        return { data: [] }
+        console.error(error)
+        console.log(error.response.data?.error ?? 'No error message')
+        return []
     }
 }
 /**
@@ -39,5 +41,5 @@ export const getGardenMonData = async (startDate, endDate, grouping, device, col
  * @property {string} soil_moisture_val -  soil moisture value
  * @property {number} soil_temp_f -  soil temperature in Fahrenheit
  * @property {string} device - Device name
- * @property {string} insert_time - Insertion time
+ * @property {string} insert_time - Insertion in unix time
  */

@@ -58,4 +58,31 @@
 	color: white;
 	padding: 10px;
 	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.time-selection-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.time-selection {
+	background-color: #4b4b4b; /* Lighter background color */
+	border: none;
+	color: #c2c2c2;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+	cursor: pointer;
+	border-radius: 4px;
+	padding: 5px 10px;
+	margin: 4px 2px;
+}
+
+.time-selection.active {
+	background-color: #8b8b8b;
 }

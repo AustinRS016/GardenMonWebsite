@@ -9,37 +9,70 @@ function App() {
 	);
 	const [device, setDevice] = useState(/** @type {Device} */ ('gardenmon'));
 
+	const [timeGrouping, setTimeGrouping] = useState('All Time');
+
+	const timeOptions = [
+		'1 Hour',
+		'6 Hours',
+		'1 Day',
+		'1 Week',
+		'1 Month',
+		'All Time',
+	];
+
+	const handleTimeChange = (e) => {
+		setTimeGrouping(e.target.value);
+	};
 	useEffect(() => {
-		const startDate = '2024-03-01-00-00';
+		const startDate = createStartDate(timeGrouping);
 		const endDate = createNowDate();
-		const grouping = 'hour';
+		const grouping = decideGrouping(timeGrouping);
 		getGardenMonData(startDate, endDate, grouping, device).then((data) =>
 			setGardenData(data)
 		);
-	}, [device]);
+	}, [device, timeGrouping]);
 
 	return (
 		<>
 			<div className='App'>
 				<div className='header'>
-					<button
-						onClick={() => setDevice('gardenmon')}
-						className={`button-tab ${device === 'gardenmon' ? 'active' : null}`}
-					>
-						Gardenmon
-					</button>
-					<button
-						onClick={() => setDevice('gardenmon_two')}
-						className={`button-tab ${
-							device === 'gardenmon_two' ? 'active' : null
-						}`}
-					>
-						Gardenmon2
-					</button>
+					<div className='button-container'>
+						<button
+							onClick={() => setDevice('gardenmon')}
+							className={`button-tab ${
+								device === 'gardenmon' ? 'active' : null
+							}`}
+						>
+							Gardenmon
+						</button>
+						<button
+							onClick={() => setDevice('gardenmon_two')}
+							className={`button-tab ${
+								device === 'gardenmon_two' ? 'active' : null
+							}`}
+						>
+							Gardenmon2
+						</button>
+						<div className='time-selection-container'>
+							{timeOptions.map((option) => (
+								<button
+									key={option}
+									onClick={handleTimeChange}
+									className={`time-selection ${
+										option === timeGrouping ? 'active' : null
+									}`}
+									value={option}
+								>
+									{option}
+								</button>
+							))}
+						</div>
+					</div>
 				</div>
 				<div className='graphs-container'>
 					{graphParameters.map((entry) => (
 						<GardenCard
+							timeGrouping={timeGrouping}
 							key={entry.yKey}
 							timeSeries={gardenData}
 							params={entry}
@@ -62,13 +95,67 @@ export const createNowDate = () => {
 	return `${year}-${month}-${day}-${hour}-${minute}`;
 };
 
+export const decideGrouping = (timeGrouping) => {
+	switch (timeGrouping) {
+		case '1 Hour':
+			return 'all_data';
+		case '6 Hours':
+			return 'all_data';
+		case '1 Day':
+			return 'fifteen_min';
+		case '1 Week':
+			return 'hour';
+		case '1 Month':
+			return 'hour';
+		case 'All Time':
+			return 'hour';
+		default:
+			return 'hour';
+	}
+};
+
+export const createStartDate = (timeGrouping) => {
+	const now = new Date();
+
+	switch (timeGrouping) {
+		case '1 Hour':
+			return dateToString(now.setHours(now.getHours() - 1));
+		case '6 Hours':
+			return dateToString(now.setHours(now.getHours() - 6));
+		case '1 Day':
+			return dateToString(now.setDate(now.getDate() - 1));
+		case '1 Week':
+			return dateToString(now.setDate(now.getDate() - 7));
+		case '1 Month':
+			return dateToString(now.setMonth(now.getMonth() - 1));
+		case 'All Time':
+			return `2024-03-01-00-00`;
+		default:
+			return `2024-03-01-00-00`;
+	}
+};
+
+const dateToString = (dateSeconds) => {
+	const date = new Date(dateSeconds);
+	const year = date.getFullYear();
+	const month = date.getMonth() + 1;
+	const day = date.getDate();
+	const hour = date.getHours();
+	const minute = date.getMinutes();
+	return `${year}-${month}-${day}-${hour}-${minute}`;
+};
+
 export default App;
 
 const xKey = 'insert_time';
 
 /**
+ * @typedef {('1 Hour' | '6 Hours' | '1 Day' | '1 Week' | '1 Month' | 'All Time')[]} TimeOptions
+ */
+
+/**
  * @typedef {Object} GraphParams
- * @property {string} lineColor - Line color
+ * @property {string | Array} lineColor - Line color or array of line colors for gradient
  * @property {string} yLabel - Y-axis label
  * @property {string} xLabel - X-axis label
  * @property {string} title - Graph title
@@ -79,7 +166,7 @@ const xKey = 'insert_time';
  * @type {GraphParams}
  */
 const soilTempParams = {
-	lineColor: 'green',
+	lineColor: ['purple', 'blue', 'green', 'yellow'],
 	yLabel: 'Temperature (F)',
 	xLabel: 'Time',
 	title: 'Soil Temperature',
